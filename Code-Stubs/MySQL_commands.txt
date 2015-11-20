@@ -1,0 +1,35 @@
+##Management tasks
+
+mysql -u <user name> -p
+CREATE USER '<name>'@'localhost' IDENTIFIED BY '<password>';
+GRANT ALL PRIVILEGES ON <database>.<table_name> TO '<name>'@'localhost';
+FLUSH PRIVILEGES; #this reloads all the privileges
+exit
+##account named 'guest' needs no password
+
+##Working with databases
+
+SHOW DATABASES;
+CREATE DATABASE <database_name>;
+DROP DATABASE <database_name>;
+USE <database_name>;
+SHOW tables; #will only show tables for active database
+DESCRIBE <table_name>;
+
+##Creating, altering, and deleting tables
+
+CREATE TABLE <table_name> (var_one TYPE, var_two TYPE . . .);
+#available types:
+#INT (with several variations), DOUBLE, FLOAT, DECIMAL
+#DATE, TIME, DATETIME,TIMESTAMP, YEAR
+#CHAR(<n>) and VARCHAR(<n>) 
+#Other options: NOT NULL, PRIMARY KEY, AUTO_INCREMENT
+
+ALTER TABLE <table_name> ADD var_three TYPE AFTER var_one; (after clause is only needed
+if you want to place the new column in a specific spot)
+ALTER TABLE <table_name> DROP var_two;
+INSERT INTO <table_name> (<var1>,<var2>, . . . ) VALUES (<val1>,<val2>, . . .);
+DELETE FROM <table_name> WHERE <var>=<some value>;
+DROP TABLE <table_name>;
+
+
