@@ -5,7 +5,8 @@ CREATE USER '<name>'@'localhost' IDENTIFIED BY '<password>';
 GRANT ALL PRIVILEGES ON <database>.<table_name> TO '<name>'@'localhost';
 FLUSH PRIVILEGES; #this reloads all the privileges
 exit
-##account named 'guest' needs no password
+##account named 'guest' needs no password and has all permissions on
+##database ML_test
 
 ##Working with databases
 
@@ -23,7 +24,7 @@ CREATE TABLE <table_name> (var_one TYPE, var_two TYPE . . .);
 #INT (with several variations), DOUBLE, FLOAT, DECIMAL
 #DATE, TIME, DATETIME,TIMESTAMP, YEAR
 #CHAR(<n>) and VARCHAR(<n>) 
-#Other options: NOT NULL, PRIMARY KEY, AUTO_INCREMENT
+#Other options: NOT NULL, PRIMARY KEY, AUTO_INCREMENT, FOREIGN KEY
 
 ALTER TABLE <table_name> ADD var_three TYPE AFTER var_one; (after clause is only needed
 if you want to place the new column in a specific spot)

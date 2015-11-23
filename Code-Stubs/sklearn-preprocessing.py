@@ -21,6 +21,42 @@ x_test_minmax = min_max_scaler.transform(x_test)
 
 #######################################################################
 
+#Preparing text
+
+##Stemming is converting words to some stem (such as realize, realizes, realizing to realiz)
+from nltk.stem.snowball import SnowballStemmer
+stemmer = SnowballStemmer("english")
+temp = text_string.split()
+for i in range(len(temp)):
+    temp[i] = stemmer.stem(temp[i])
+works = " ".join(temp)
+
+#you can also use nltk to remove stopwords
+import nltk.corpus import stopwords
+sw = stopwords.words("english")
+for ele in sw:
+    text.replace(ele,"")
+
+##Note: there will often be signature words (such as names) you will also want
+##to remove
+
+#sklearn implements a CountVectorizer to tokenize and count word occurrances of text (needs text).
+#It has TfidfTransformer to normalize/weight tokens by their frequency (needs token counts).
+#Cleverly, it has a TfidfVectorizer that does both.
+from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer(stop_words='english')
+#stop_words option can either remove preset stopwords, or a user-generated list
+#lowercase option makes vectorizer case-insensitive (default True)
+#min_df and max_df can be used to set min and max document frequency limits for words to be included
+#floats are taken as fractions of documents; integers as numbers of documents
+#max_features=n limits number of features used to top n
+vectorizer.fit_transform(word_data)
+#also have separate fit, transform, and inverse_transform functions
+feature_names = vectorizer.get_feature_names() #returns map of feature indices to names
+
+
+#######################################################################
+
 #Decomposition: Principal Component Analysis
 from sklearn.decomposition import PCA
 pca = PCA(n_components=<N>)
